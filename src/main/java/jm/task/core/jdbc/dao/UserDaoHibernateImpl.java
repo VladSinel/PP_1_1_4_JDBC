@@ -64,8 +64,9 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void removeUserById(long id) {
-        try (Session session = Util.getSessionFactory().openSession()) {
-            Transaction transaction = session.beginTransaction();
+        Session session = Util.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        try (session) {
             session.delete(session.get(User.class, id));
             transaction.commit();
             System.out.println("Removing user complete");
@@ -73,6 +74,9 @@ public class UserDaoHibernateImpl implements UserDao {
             System.out.println("Removing user problems...");
             System.out.println(h.getMessage());
             h.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
         }
     }
 

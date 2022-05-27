@@ -15,7 +15,7 @@ import java.util.Properties;
 
 public class Util {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/mysql";
+    private static final String URL = "jdbc:mysql://localhost:3306/mysql?serverTimezone=Europe/Moscow&useSSL=false";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "RodenServ0618++";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -39,7 +39,7 @@ public class Util {
                 Configuration configuration = new Configuration();
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, DRIVER);
-                settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+               // settings.put(Environment.HBM2DDL_AUTO, "create-drop");
                 settings.put(Environment.URL, URL);
                 settings.put(Environment.USER, USERNAME);
                 settings.put(Environment.PASS, PASSWORD);
